@@ -1,7 +1,7 @@
 /* Uses APIs of OpenWeatherMap and IP Geolocation */
 $(document).ready(function(){
   /* First, get IP geo-coordinates */
-  $.getJSON("http://ip-api.com/json", function(coords){
+  $.getJSON("https://ip-api.com/json", function(coords){
     var lat = coords.lat;
     var long = coords.lon;
     var city = coords.city;
@@ -10,26 +10,26 @@ $(document).ready(function(){
     $("#location").html(""+city+", "+region+", "+country);
     /* Next, use coords to get weather data */
     var owmKey = "56b82012d59734fb72562b33066806b4"; // unique app key
-    var apiURL = "http://api.openweathermap.org/data/2.5/weather?";
+    var apiURL = "https://api.openweathermap.org/data/2.5/weather?";
     $.getJSON(apiURL+"lat="+lat+"&lon="+long+"&APPID="+owmKey, function(data){
 
       /* Determine general weather type */
       var weather = data.weather[0].main;
       var condition = data.weather[0].description;
       $("#weather").html("Contains "+condition);
-      
+
       /* Determine weather icon*/
       var icon;
       var id = data.weather[0].id;
       var timeNow = data.dt;  // All time vars are in UNIX
       var sunRise = data.sys.sunrise;
       var sunSet = data.sys.sunset;
-      
+
       // Test statements:
       //weather="Extreme";
       //id = 904;
       // ^^End of test statements
-      
+
       if (timeNow >= sunRise && timeNow < sunSet) { // day
         if (id < 300){
           icon = "11d.png";
@@ -75,14 +75,14 @@ $(document).ready(function(){
           icon = "50n.png";
         }
       }
-      var iconURL = "http://openweathermap.org/img/w/"+icon;
+      var iconURL = "https://openweathermap.org/img/w/"+icon;
       $("#icon").attr("src", iconURL);
-      
+
       /* Determine background image */
       if (weather === "Rain") {
-        $("body").css("background-image", "url(http://webneel.com/wallpaper/sites/default/files/images/04-2013/Rainy-Weather_2.jpg)");
+        $("body").css("background-image", "url(https://webneel.com/wallpaper/sites/default/files/images/04-2013/Rainy-Weather_2.jpg)");
       } else if (weather === "Snow") {
-        $("body").css("background-image", "url(http://www.wallpaperup.com/uploads/wallpapers/2013/01/07/28265/big_thumb_a37ef69062c8eccadcd03fa1b7d46bf7.jpg)");
+        $("body").css("background-image", "url(https://www.wallpaperup.com/uploads/wallpapers/2013/01/07/28265/big_thumb_a37ef69062c8eccadcd03fa1b7d46bf7.jpg)");
       } else if (weather === "Thunderstorm") {
         $("body").css("background-image", "url(https://static.pexels.com/photos/56614/lightning-storm-night-firebird-56614-large.jpeg)");
       } else if (weather === "Drizzle") {
@@ -96,10 +96,10 @@ $(document).ready(function(){
       } else {  // Extreme conditions
         switch(id){
           case 900: // tornado
-            $("body").css("background-image", "url(http://sites.psu.edu/nidzynrclblog1314/wp-content/uploads/sites/4984/2013/10/tornado-wallpaper1366x76858676.jpg)");
+            $("body").css("background-image", "url(https://sites.psu.edu/nidzynrclblog1314/wp-content/uploads/sites/4984/2013/10/tornado-wallpaper1366x76858676.jpg)");
             break;
           case 901: // tropical storm
-            $("body").css("background-image", "url(http://belizeadventure.com/wp-content/uploads/2013/04/northern-storm-2003.jpg)");
+            $("body").css("background-image", "url(https://belizeadventure.com/wp-content/uploads/2013/04/northern-storm-2003.jpg)");
             break;
           case 902: // hurricane
             $("body").css("background-image", "url(https://i.ytimg.com/vi/jNU1n1nIl-Y/maxresdefault.jpg)");
@@ -117,10 +117,10 @@ $(document).ready(function(){
             $("body").css("background-image", "url(https://idaniswriting.files.wordpress.com/2011/03/hailstones_uk.jpg)");
             break;
           default:
-            
+
         }
       }
-      
+
       /* Determine temperature */
       var tempK = Math.round(data.main.temp); // Kelvin is the default
       var tempC = tempK - 273;  // Celsius
@@ -138,5 +138,5 @@ $(document).ready(function(){
       });
     });
   });
-  
+
 });
