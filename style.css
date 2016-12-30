@@ -1,0 +1,60 @@
+body {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#title {
+  color: white;
+  font-family: 'Bitter', sans serif;
+  font-size: 50px;
+  text-shadow: 0 0 3px #000;
+}
+
+.container {
+  margin-top: 100px;
+}
+
+.center {
+  background-color: rgba(80,80,80,0.5);
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+h2, h3, h4, p {
+  color: white;
+  text-align: center;
+  text-shadow: 0 0 3px #000;
+}
+
+.centerButton {
+  display: table;
+  margin: 0 auto;
+}
+
+#temp {
+  color: white;
+  font-family: 'Orbitron', sans serif;
+  font-size: 72px;
+  text-align: center;
+  text-shadow: 0 0 3px #000;
+}
+
+.centerImg {
+  display: table;
+  margin: 0 auto;
+}
+
+h3 {
+  font-family: 'Archivo Black', sans serif;
+}
+
+#location {
+  padding-bottom: 10px;
+}
+
+#signature, a {
+  color: white;
+  padding-top: 10px;
+  font-size: 15px;
+  text-shadow: 0 0 5px #000;
+}
